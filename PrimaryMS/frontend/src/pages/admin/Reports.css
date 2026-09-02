@@ -1,0 +1,331 @@
+/* =====================================================
+   PrimaryMS — Reports Page
+   ===================================================== */
+
+.rpt-page {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+/* ── Header ── */
+.rpt-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  flex-wrap: wrap;
+  gap: 14px;
+}
+.rpt-title {
+  font-size: 1.5rem;
+  font-weight: 700;
+  color: var(--text-primary);
+}
+.rpt-sub {
+  color: var(--text-muted);
+  font-size: 0.85rem;
+  margin-top: 2px;
+}
+.rpt-header__actions {
+  display: flex;
+  gap: 10px;
+  flex-wrap: wrap;
+}
+
+/* ── Tabs ── */
+.rpt-tabs {
+  display: flex;
+  gap: 6px;
+  background: var(--bg-surface);
+  border: 1px solid var(--border-color);
+  border-radius: var(--radius-lg);
+  padding: 6px;
+}
+.rpt-tab {
+  display: flex;
+  align-items: center;
+  gap: 7px;
+  padding: 8px 18px;
+  border: none;
+  border-radius: var(--radius-md);
+  background: transparent;
+  color: var(--text-muted);
+  font-family: inherit;
+  font-size: 0.88rem;
+  font-weight: 500;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+.rpt-tab:hover { color: var(--text-primary); background: rgba(255,255,255,0.04); }
+.rpt-tab--active {
+  background: linear-gradient(135deg, var(--color-primary), var(--color-secondary));
+  color: #fff;
+  font-weight: 600;
+}
+
+/* ── Section ── */
+.rpt-section { display: flex; flex-direction: column; gap: 16px; }
+.rpt-section__toolbar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+.rpt-section__title {
+  font-size: 0.85rem;
+  color: var(--text-muted);
+  font-weight: 500;
+}
+
+/* ── Error / Empty ── */
+.rpt-error {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 12px 16px;
+  background: rgba(239,68,68,0.1);
+  border: 1px solid rgba(239,68,68,0.3);
+  border-radius: var(--radius-md);
+  color: #f87171;
+  font-size: 0.88rem;
+}
+.rpt-empty {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 12px;
+  padding: 60px 20px;
+  color: var(--text-muted);
+  font-size: 0.9rem;
+  text-align: center;
+}
+.rpt-empty span { font-size: 2.5rem; }
+
+/* ── KPI grid ── */
+.rpt-kpi-grid {
+  display: grid;
+  grid-template-columns: repeat(5, 1fr);
+  gap: 14px;
+}
+@media (max-width: 900px) { .rpt-kpi-grid { grid-template-columns: repeat(3, 1fr); } }
+@media (max-width: 580px) { .rpt-kpi-grid { grid-template-columns: repeat(2, 1fr); } }
+
+.rpt-kpi {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  padding: 18px;
+  border-radius: var(--radius-lg);
+  border: 1px solid var(--border-color);
+  background: var(--bg-surface);
+  transition: transform 0.2s, box-shadow 0.2s;
+}
+.rpt-kpi:hover { transform: translateY(-2px); box-shadow: var(--shadow-md); }
+
+.rpt-kpi__icon {
+  width: 42px; height: 42px;
+  display: flex; align-items: center; justify-content: center;
+  border-radius: var(--radius-md);
+  font-size: 1.1rem;
+  flex-shrink: 0;
+}
+.rpt-kpi__value { font-size: 1.6rem; font-weight: 700; color: var(--text-primary); }
+.rpt-kpi__label { font-size: 0.78rem; color: var(--text-muted); text-transform: uppercase; letter-spacing: 0.04em; }
+
+.rpt-kpi--indigo .rpt-kpi__icon { background: rgba(79,70,229,0.15); color: #818cf8; }
+.rpt-kpi--cyan   .rpt-kpi__icon { background: rgba(8,145,178,0.15);  color: #22d3ee; }
+.rpt-kpi--green  .rpt-kpi__icon { background: rgba(16,185,129,0.15); color: #34d399; }
+.rpt-kpi--amber  .rpt-kpi__icon { background: rgba(217,119,6,0.15);  color: #fbbf24; }
+.rpt-kpi--violet .rpt-kpi__icon { background: rgba(124,58,237,0.15); color: #a78bfa; }
+
+/* ── Row layout ── */
+.rpt-row {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 16px;
+}
+@media (max-width: 700px) { .rpt-row { grid-template-columns: 1fr; } }
+
+/* ── Card ── */
+.rpt-card {
+  background: var(--bg-surface);
+  border: 1px solid var(--border-color);
+  border-radius: var(--radius-lg);
+  padding: 20px;
+}
+.rpt-card__head {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 0.9rem;
+  font-weight: 600;
+  color: var(--text-secondary);
+  margin-bottom: 18px;
+  padding-bottom: 12px;
+  border-bottom: 1px solid var(--border-color);
+}
+
+/* ── Attendance summary (donut + legend) ── */
+.rpt-att-summary { display: flex; align-items: center; gap: 24px; }
+.rpt-att-ring { flex-shrink: 0; }
+.rpt-att-stats { display: flex; flex-direction: column; gap: 14px; }
+.rpt-att-stat { display: flex; align-items: center; gap: 10px; }
+.rpt-att-stat strong { font-size: 1.4rem; font-weight: 700; color: var(--text-primary); display: block; }
+.rpt-att-stat span { font-size: 0.78rem; color: var(--text-muted); display: block; }
+.dot { width: 10px; height: 10px; border-radius: 50%; flex-shrink: 0; }
+.dot--green { background: var(--color-success); }
+.dot--red   { background: var(--color-danger); }
+
+/* ── Fee boxes ── */
+.rpt-fee-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; }
+.rpt-fee-box {
+  padding: 18px;
+  border-radius: var(--radius-md);
+  text-align: center;
+}
+.rpt-fee-box__label { font-size: 0.78rem; text-transform: uppercase; letter-spacing: 0.04em; margin-bottom: 8px; }
+.rpt-fee-box__value { font-size: 1.5rem; font-weight: 700; }
+.rpt-fee-box--danger  { background: rgba(239,68,68,0.1); border: 1px solid rgba(239,68,68,0.2); color: #f87171; }
+.rpt-fee-box--warning { background: rgba(245,158,11,0.1); border: 1px solid rgba(245,158,11,0.2); color: #fbbf24; }
+
+/* ── Filters ── */
+.rpt-filters {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  flex-wrap: wrap;
+  background: var(--bg-surface);
+  border: 1px solid var(--border-color);
+  border-radius: var(--radius-lg);
+  padding: 14px 18px;
+}
+.rpt-select {
+  background: var(--bg-elevated);
+  border: 1px solid var(--border-color);
+  border-radius: var(--radius-md);
+  padding: 8px 12px;
+  color: var(--text-primary);
+  font-family: inherit;
+  font-size: 0.88rem;
+  min-width: 160px;
+  outline: none;
+}
+.rpt-date-label {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  font-size: 0.82rem;
+  color: var(--text-muted);
+}
+.rpt-date {
+  background: var(--bg-elevated);
+  border: 1px solid var(--border-color);
+  border-radius: var(--radius-md);
+  padding: 7px 10px;
+  color: var(--text-primary);
+  font-family: inherit;
+  font-size: 0.88rem;
+  outline: none;
+}
+
+/* ── Meta bar ── */
+.rpt-meta-bar {
+  font-size: 0.84rem;
+  color: var(--text-muted);
+  padding: 8px 14px;
+  background: var(--bg-surface);
+  border-radius: var(--radius-md);
+  border: 1px solid var(--border-color);
+}
+.rpt-meta-bar strong { color: var(--text-secondary); }
+
+/* ── Bar chart list ── */
+.rpt-bar-list { display: flex; flex-direction: column; gap: 14px; }
+.rpt-bar-item { display: flex; flex-direction: column; gap: 6px; }
+.rpt-bar-meta { display: flex; justify-content: space-between; align-items: center; }
+.rpt-bar-label {
+  font-size: 0.82rem; font-weight: 600; text-transform: capitalize;
+  padding: 2px 10px; border-radius: 999px;
+}
+.rpt-bar-label--green  { background: rgba(16,185,129,0.15);  color: #34d399; }
+.rpt-bar-label--red    { background: rgba(239,68,68,0.15);   color: #f87171; }
+.rpt-bar-label--amber  { background: rgba(245,158,11,0.15);  color: #fbbf24; }
+.rpt-bar-label--blue   { background: rgba(59,130,246,0.15);  color: #60a5fa; }
+.rpt-bar-label--indigo { background: rgba(79,70,229,0.15);   color: #818cf8; }
+.rpt-bar-count { font-size: 0.82rem; color: var(--text-muted); }
+.rpt-bar-count small { opacity: 0.7; }
+.rpt-bar-track { height: 8px; background: rgba(255,255,255,0.06); border-radius: 4px; overflow: hidden; }
+.rpt-bar-fill { height: 100%; border-radius: 4px; transition: width 0.6s cubic-bezier(.4,0,.2,1); }
+.rpt-bar-fill--green  { background: linear-gradient(90deg, #059669, #34d399); }
+.rpt-bar-fill--red    { background: linear-gradient(90deg, #dc2626, #f87171); }
+.rpt-bar-fill--amber  { background: linear-gradient(90deg, #d97706, #fbbf24); }
+.rpt-bar-fill--blue   { background: linear-gradient(90deg, #2563eb, #60a5fa); }
+.rpt-bar-fill--score  { transition: width 0.7s cubic-bezier(.4,0,.2,1); }
+.rpt-bar-subject { font-size: 0.84rem; font-weight: 600; color: var(--text-secondary); }
+
+/* ── Table ── */
+.rpt-table-wrap {
+  background: var(--bg-surface);
+  border: 1px solid var(--border-color);
+  border-radius: var(--radius-lg);
+  overflow: hidden;
+}
+.rpt-table { width: 100%; border-collapse: collapse; font-size: 0.88rem; }
+.rpt-table thead tr { background: var(--bg-elevated); }
+.rpt-table th {
+  padding: 10px 16px;
+  text-align: left;
+  font-size: 0.75rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+  color: var(--text-muted);
+  border-bottom: 1px solid var(--border-color);
+}
+.rpt-table td {
+  padding: 12px 16px;
+  border-bottom: 1px solid rgba(255,255,255,0.04);
+  color: var(--text-secondary);
+}
+.rpt-table tbody tr:hover { background: rgba(255,255,255,0.02); }
+.rpt-table tbody tr:last-child td { border-bottom: none; }
+.rpt-table__total { background: var(--bg-elevated); }
+.rpt-table__total td { color: var(--text-primary); border-top: 1px solid var(--border-color); }
+
+/* Inline percentage bar */
+.rpt-inline-bar { display: flex; align-items: center; gap: 8px; }
+.rpt-inline-fill {
+  height: 4px; border-radius: 2px;
+  background: var(--color-primary);
+  min-width: 4px; max-width: 80px;
+}
+.rpt-inline-bar span { font-size: 0.78rem; color: var(--text-muted); white-space: nowrap; }
+
+/* ── Scores overall ring ── */
+.rpt-overall {
+  display: flex;
+  align-items: center;
+  gap: 24px;
+  padding: 20px 24px;
+  background: var(--bg-surface);
+  border: 1px solid var(--border-color);
+  border-radius: var(--radius-lg);
+}
+.rpt-overall__circle {
+  width: 110px; height: 110px;
+  border-radius: 50%;
+  display: flex; align-items: center; justify-content: center;
+  flex-shrink: 0;
+  position: relative;
+}
+.rpt-overall__inner {
+  width: 80px; height: 80px;
+  background: var(--bg-surface);
+  border-radius: 50%;
+  display: flex; flex-direction: column; align-items: center; justify-content: center;
+}
+.rpt-overall__pct { font-size: 1.3rem; font-weight: 700; color: var(--text-primary); }
+.rpt-overall__sub { font-size: 0.65rem; color: var(--text-muted); text-transform: uppercase; }
+.rpt-overall__stats { display: flex; gap: 24px; }
+.rpt-overall__stat { display: flex; flex-direction: column; align-items: center; gap: 2px; }
+.rpt-overall__stat strong { font-size: 1.4rem; font-weight: 700; color: var(--text-primary); }
+.rpt-overall__stat { font-size: 0.78rem; color: var(--text-muted); }
